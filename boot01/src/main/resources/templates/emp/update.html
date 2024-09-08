@@ -5,6 +5,7 @@
 	  layout:fragment="Content">
 	  
 <body>
+<div class="container">
 	<form name="updateForm" th:object="${emp}">
 		<h3>사원 정보 수정</h3>
 		<div>
@@ -21,7 +22,7 @@
 		</div>
 		<div>
 			<label for="hdate">입사일자</label>
-			<input type="date" id="hdate" name="email" th:field="*{hireDate}" >
+			<input type="date" id="hdate" name="hdate" th:field="*{hireDate}" >
 		</div>
 		<div>
 			<label for="job">업무</label>
@@ -35,6 +36,7 @@
 			<button type="button" id="updateBtn">저장</button>
 		</div>
 	</form>
+</div>	
 <script>
 	$('#updateBtn').on('click', updateAjax);
 

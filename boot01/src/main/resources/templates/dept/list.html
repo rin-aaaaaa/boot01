@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org/">
-<head>
-<meta charset="UTF-8">
-<title>deptList</title>
-</head>
+<html xmlns:th="https://www.thymeleaf.org/"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{common/layouts/detault_layout}"
+	  layout:fragment="Content">
+	  
 <body>
-	<div>
-		<h3>전제 부서 조회</h3>
+	<div class="container">
+		<h3>전체 부서 조회</h3>
 		<table>
 			<thead>
 				<tr>
@@ -15,14 +15,23 @@
 				</tr>
 			</thead>
 			<tbody>
-				<th:bolck th:each="info : ${depts}">
+				<th:block th:each="info : ${depts}">
 					<tr>
-						<td>[[ ${info.departmentId} ]]</td>
-						<td>[[ ${info.departmentName} ]]</td>
+						<td th:text="${info.departmentId}"/>
+						<td th:text="${info.departmentName}"/>
 					</tr>
 				</th:bolck>
 			</tbody>
 		</table>
 	</div>
+<script>
+	const context = $('meta[name="ctxPath"]').attr('value');
+	$('tbody > tr').on('click', function(e){
+		let trTag = e.currentTarget;
+		let did = $(trTag).children().eq(0).text();
+		let url = (context==undefined?'':context) + '/deptInfo?departmentId=' + did;
+		location.href=url;
+	});
+</script>	
 </body>
 </html>
